@@ -1,80 +1,81 @@
-# Pendule Double — Modélisation Numérique
+# Pendule Double — Modelisation Numerique
 
-**Projet INSA Lyon** — Modules de Modélisation Numérique
+**Projet INSA Lyon** — Modules de Modelisation Numerique
 
-Simulation et analyse d'un **pendule double** — un système dynamique non linéaire présentant un comportement chaotique. Ce projet explore la résolution numérique des équations du mouvement, la quantification du chaos via les exposants de Lyapunov, et la visualisation de la dynamique complexe.
+Simulation et analyse d'un **pendule double** — un systeme dynamique non lineaire presentant un comportement chaotique. Resolution numerique des equations du mouvement, quantification du chaos via les exposants de Lyapunov, analyse de bifurcation et visualisations.
 
-## 📋 Contenu
+---
+
+## Apercus de l'analyse du chaos
+
+### Heatmap des exposants de Lyapunov
+![Lyapunov Heatmap](Lyapunov%20Heatmap%20m1%20%3D%200.1%20m2%20%3D%200.4%20l1%20%3D%20l2%20%3D%200.5%20bonne%20%C3%A9chelle.png)
+
+Heatmap des exposants de Lyapunov en fonction des angles initiaux θ₁ et θ₂. Les zones rouges indiquent un comportement chaotique (exposant > 0), les zones bleues un comportement regulier.
+
+### Diagramme de bifurcation
+![Diagramme de bifurcation](diagramme%20de%20bifurcation%20legend%C3%A9.png)
+
+Transition ordre → chaos : le diagramme montre comment le systeme passe d'un comportement periodique a un comportement chaotique lorsque les parametres varient.
+
+### Heatmap du temps de retournement
+![Temps de retournement](Temps%20de%20retournement%20heatmap%20bons%20axes.png)
+
+Temps necessaire pour que le pendule se retourne completement, en fonction des conditions initiales. Correlle avec les exposants de Lyapunov.
+
+### Comparaison analytique vs numerique
+![Comparaison](fig_compa_ana_num_2D.png)
+
+Comparaison des trajectoires obtenues par resolution analytique (linearisee) et numerique (non lineaire). Le modele linearise diverge rapidement pour les grands angles.
+
+### Ecart relatif entre methodes
+![Ecart relatif](Ecart%20relatif%20heatmap%20final.png)
+
+Heatmap de l'ecart relatif entre les solutions analytique et numerique, montrant les zones de validite du modele linearise.
+
+---
+
+## Contenu du projet
 
 | Fichier | Description |
-|---|---|
-| `double_pendulum.ipynb` | Notebook Jupyter principal — simulation complète, analyse et visualisations |
-| `pendule double.png` | Schéma du système pendule double |
-| `diagramme de bifurcation legendé.png` | Diagramme de bifurcation annoté |
-| `Schéma expliquation calcul exposant Lyapunov.png` | Explication du calcul des exposants de Lyapunov |
-| `Ecart relatif heatmap final.png` | Heatmap de l'écart relatif (comparaison méthodes) |
-| `Lyapunov Heatmap m1 = 0.1 m2 = 0.4 l1 = l2 = 0.5 bonne échelle.png` | Heatmap des exposants de Lyapunov |
-| `Temps de retournement heatmap bons axes.png` | Heatmap du temps de retournement |
-| `fig_compa_ana_num_2D.png` | Comparaison solution analytique vs numérique |
-| `Animation theta10 = 175 theta20 = 10.mp4` | Animation — trajectoire chaotique (175°, 10°) |
-| `Animation theta10 = 110 theta20 = 90.mp4` | Animation — trajectoire chaotique (110°, 90°) |
+|---------|-------------|
+| `double_pendulum.ipynb` | Notebook Jupyter principal — simulation complete, analyse et visualisations |
+| `Animation *.mp4` | Animations des trajectoires pour differentes conditions initiales |
+| `Lyapunov Heatmap *.png` | Heatmaps des exposants de Lyapunov |
+| `diagramme de bifurcation legendé.png` | Diagramme de bifurcation annote |
+| `Temps de retournement heatmap *.png` | Heatmap du temps de retournement |
+| `Ecart relatif heatmap final.png` | Heatmap de l'ecart relatif (comparaison methodes) |
+| `Schema expliquation calcul exposant Lyapunov.png` | Explication du calcul des exposants de Lyapunov |
+| `pendule double.png` | Schema du systeme pendule double |
 
-## 🧪 Méthodologie
+## Methodologie
 
-### Résolution des équations différentielles
-
-Les équations du mouvement du pendule double sont dérivées via le **formalisme de Lagrange** et résolues numériquement avec :
-
-- **`scipy.integrate.solve_ivp`** / `odeint` — intégration numérique des ODEs
-- **`numpy`** — calculs matriciels et manipulation des données
-- Régime non linéaire (équations complètes) vs régime linéarisé (petites oscillations)
+### Resolution des equations differentielles
+Les equations du mouvement sont derivees via le **formalisme de Lagrange** et resolues numeriquement avec **scipy.integrate.solve_ivp**. Deux regimes sont compares : non lineaire (equations completes) et linearise (petites oscillations).
 
 ### Analyse du chaos
-
-- **Exposants de Lyapunov** — quantification de la sensibilité aux conditions initiales
+- **Exposants de Lyapunov** — quantification de la sensibilite aux conditions initiales
 - **Diagrammes de bifurcation** — transition ordre → chaos
-- **Temps de retournement** — métrique de stabilité du système
-- **Heatmaps paramétriques** — influence des masses, longueurs et conditions initiales
+- **Temps de retournement** — metrique de stabilite du systeme
+- **Heatmaps parametriques** — influence des masses, longueurs et angles initiaux
 
-### Visualisations
-
-- Animations MP4 des trajectoires dans l'espace des phases
-- Heatmaps 2D des exposants de Lyapunov
-- Comparaison analytique vs numérique
-- Diagrammes de bifurcation
-
-## 🚀 Utilisation
+## Utilisation
 
 ```bash
-# Cloner le dépôt
-git clone https://github.com/<username>/double-pendulum.git
+git clone https://github.com/dean-leveneur/double-pendulum.git
 cd double-pendulum
-
-# Lancer le notebook
 jupyter notebook double_pendulum.ipynb
 ```
 
-### Dépendances
+Dependances : Python 3.x, numpy, scipy, matplotlib, sympy
 
-- Python 3.x
-- numpy, scipy
-- matplotlib
-- sympy (dérivation équations)
-- ipywidgets, IPython.display (animations)
+## Resultats cles
 
-## 📊 Résultats clés
-
-1. **Comparaison linéaire vs non linéaire** — le modèle linéarisé diverge rapidement du modèle non linéaire pour de grands angles
-2. **Exposants de Lyapunov** — mise en évidence des régions chaotiques en fonction des paramètres physiques (masses, longueurs, angles initiaux)
+1. **Comparaison lineaire vs non lineaire** — le modele linearise diverge rapidement du modele non lineaire pour de grands angles
+2. **Exposants de Lyapunov** — mise en evidence des regions chaotiques en fonction des parametres physiques
 3. **Diagramme de bifurcation** — visualisation de la transition vers le chaos
-4. **Temps de retournement** — corrélation avec les exposants de Lyapunov pour caractériser la stabilité
+4. **Temps de retournement** — correle avec les exposants de Lyapunov pour caracteriser la stabilite
 
-## 📚 Références
+---
 
-- Strogatz, S. H. — *Nonlinear Dynamics and Chaos*
-- Goldstein, H. — *Classical Mechanics* (formalisme de Lagrange)
-- INSA Lyon — Cours de Modélisation Numérique
-
-## 👤 Auteur
-
-Projet réalisé dans le cadre des modules de Modélisation Numérique à l'INSA Lyon.
+*Projet realise a l'INSA Lyon — Modules de Modelisation Numerique*
